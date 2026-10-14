@@ -407,6 +407,43 @@
 .tool-logo-card span{font-size:.83rem;font-weight:600;text-align:center;line-height:1.4;color:var(--paper);}
 @media(max-width:950px){.tool-logo-grid{grid-template-columns:repeat(4,minmax(0,1fr));}}
 @media(max-width:560px){.tool-logo-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.tool-logo-card{min-height:126px;padding:16px 5px}.tool-logo-icon img{width:44px;height:44px}.tool-logo-card span{font-size:.74rem;}}
+
+/* Website showcase: integrated dark/red portfolio theme */
+.sites-intro{display:flex;justify-content:space-between;align-items:end;gap:20px;margin:34px 0 20px}
+.site-kicker{font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#ed454f}
+.sites-intro h3,.previous-work-title h3{font-size:clamp(24px,3vw,34px);margin:7px 0}
+.sites-intro p,.sites-modal-header p{color:#a3a3a8;font-size:14px;line-height:1.6}
+.site-controls{display:flex;gap:10px;flex-shrink:0}
+.site-nav-btn,.site-close{background:#1c1c20;border:1px solid #37373b;color:white;border-radius:12px;width:44px;height:44px;cursor:pointer;font-size:20px;transition:.2s}
+.site-nav-btn:hover,.site-close:hover{background:#b92130;border-color:#b92130}
+.sites-carousel{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:thin;scrollbar-color:#b92130 #1a1a1e;padding:6px 2px 20px}
+.site-card{background:#18181c;border:1px solid #34343b;border-radius:15px;overflow:hidden;min-width:0;transition:transform .2s,border-color .2s}
+.sites-carousel .site-card{flex:0 0 clamp(245px,30%,360px);scroll-snap-align:start}
+.site-card:hover{transform:translateY(-4px);border-color:#bc3341}
+.site-preview{height:200px;position:relative;display:block;background:linear-gradient(145deg,#292a31,#121217);overflow:hidden}
+.site-preview img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;position:relative;z-index:1}
+.site-fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:9px;padding:20px;text-align:center;background:radial-gradient(circle at 65% 30%,#63242c,#17171c 65%)}
+.site-fallback span{font-size:22px;font-weight:750;color:white}.site-fallback small{color:#d4a6aa}
+.site-open-icon{position:absolute;z-index:2;right:12px;top:12px;border-radius:8px;padding:4px 10px;background:#16161bdc;color:white;font-size:18px}
+.site-meta{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:17px}
+.site-meta h3{font-size:16px;margin:0 0 5px;color:#f6f6f7}
+.site-meta p{font-size:12px;color:#aaaab0;margin:0;overflow-wrap:anywhere}
+.site-meta>a{font-size:20px;color:#f6f6f7;text-decoration:none;flex-shrink:0}
+.sites-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:14px 0 52px}
+.sites-footer>span{font-size:13px;color:#aaaab0}
+.sites-all-btn{background:#b92332;color:#fff;border:1px solid #e13a4a;border-radius:10px;padding:13px 20px;font-weight:750;cursor:pointer;transition:.2s}
+.sites-all-btn:hover{background:#df3546}
+.previous-work-title{margin:25px 0 22px}
+.sites-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:99999;padding:24px;overflow-y:auto}
+.sites-modal.is-open{display:block}
+.sites-modal-panel{width:min(1240px,100%);margin:0 auto;background:#101014;border:1px solid #37373d;border-radius:18px;padding:28px}
+.sites-modal-header{display:flex;align-items:start;justify-content:space-between;gap:20px;margin-bottom:26px}
+.sites-modal-header h2{color:white;font-size:clamp(26px,4vw,42px);margin:6px 0}
+.sites-count{font-size:14px;color:#eee;background:#9e2531;border-radius:100px;padding:4px 10px;vertical-align:middle}
+.sites-modal-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+body.sites-modal-open{overflow:hidden}
+@media(max-width:900px){.sites-modal-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.sites-carousel .site-card{flex-basis:45%}}
+@media(max-width:600px){.sites-intro{align-items:start}.sites-intro p{max-width:250px}.sites-carousel .site-card{flex-basis:85%}.sites-modal{padding:8px}.sites-modal-panel{padding:15px}.sites-modal-grid{grid-template-columns:1fr}.site-preview{height:190px}.sites-modal-header h2{font-size:26px}}
 </style>
 </head>
 <body>
@@ -484,9 +521,253 @@
 <span class="eyebrow">Work</span>
 <div class="section-head">
 <h2>Live sites &amp; stores</h2>
-<p>Selected websites and Shopify stores built and maintained end to end.</p>
+<p>Explore featured work and a collection of live websites. Browse homepage previews or view the complete gallery.</p>
 </div>
-<div class="work-grid">
+
+<div class="sites-intro"><div><span class="site-kicker">WEBSITE SHOWCASE</span><h3>Website portfolio</h3><p>Browse 34 website homepages. Select any card to visit the live website.</p></div>
+<div class="site-controls"><button aria-label="Previous websites" class="site-nav-btn" id="sitesPrev">←</button><button aria-label="Next websites" class="site-nav-btn" id="sitesNext">→</button></div></div>
+<div aria-label="Website homepage carousel" class="sites-carousel" id="sitesCarousel" tabindex="0"><article class="site-card">
+<a aria-label="Open Affina Haus website" class="site-preview" href="https://affinahaus.com/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Affina Haus</span><small>affinahaus.com</small></div>
+<img alt="Homepage screenshot of Affina Haus" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Faffinahaus.com%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Affina Haus</h3><p>affinahaus.com</p></div><a aria-label="Visit Affina Haus" href="https://affinahaus.com/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Allergoff website" class="site-preview" href="https://allergoff.com.au/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Allergoff</span><small>allergoff.com.au</small></div>
+<img alt="Homepage screenshot of Allergoff" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fallergoff.com.au%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Allergoff</h3><p>allergoff.com.au</p></div><a aria-label="Visit Allergoff" href="https://allergoff.com.au/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Alpine Chain Co website" class="site-preview" href="https://alpinechainco.com.au/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Alpine Chain Co</span><small>alpinechainco.com.au</small></div>
+<img alt="Homepage screenshot of Alpine Chain Co" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Falpinechainco.com.au%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Alpine Chain Co</h3><p>alpinechainco.com.au</p></div><a aria-label="Visit Alpine Chain Co" href="https://alpinechainco.com.au/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Aus Fairings website" class="site-preview" href="https://aus-fairings.com/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Aus Fairings</span><small>aus-fairings.com</small></div>
+<img alt="Homepage screenshot of Aus Fairings" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Faus-fairings.com%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Aus Fairings</h3><p>aus-fairings.com</p></div><a aria-label="Visit Aus Fairings" href="https://aus-fairings.com/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Bad Cat Label website" class="site-preview" href="https://badcatlabel.com/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Bad Cat Label</span><small>badcatlabel.com</small></div>
+<img alt="Homepage screenshot of Bad Cat Label" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fbadcatlabel.com%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Bad Cat Label</h3><p>badcatlabel.com</p></div><a aria-label="Visit Bad Cat Label" href="https://badcatlabel.com/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Best Fur Forward website" class="site-preview" href="https://bestfurforward.com.au/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Best Fur Forward</span><small>bestfurforward.com.au</small></div>
+<img alt="Homepage screenshot of Best Fur Forward" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fbestfurforward.com.au%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Best Fur Forward</h3><p>bestfurforward.com.au</p></div><a aria-label="Visit Best Fur Forward" href="https://bestfurforward.com.au/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Belle Monde Beauty website" class="site-preview" href="https://bellemondebeauty.com/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Belle Monde Beauty</span><small>bellemondebeauty.com</small></div>
+<img alt="Homepage screenshot of Belle Monde Beauty" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fbellemondebeauty.com%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Belle Monde Beauty</h3><p>bellemondebeauty.com</p></div><a aria-label="Visit Belle Monde Beauty" href="https://bellemondebeauty.com/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Calm Babies website" class="site-preview" href="https://calmbabies.com.au/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Calm Babies</span><small>calmbabies.com.au</small></div>
+<img alt="Homepage screenshot of Calm Babies" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fcalmbabies.com.au%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Calm Babies</h3><p>calmbabies.com.au</p></div><a aria-label="Visit Calm Babies" href="https://calmbabies.com.au/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Comosum website" class="site-preview" href="https://comosum.co/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Comosum</span><small>comosum.co</small></div>
+<img alt="Homepage screenshot of Comosum" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fcomosum.co%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Comosum</h3><p>comosum.co</p></div><a aria-label="Visit Comosum" href="https://comosum.co/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Euco website" class="site-preview" href="https://euco.com.au/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Euco</span><small>euco.com.au</small></div>
+<img alt="Homepage screenshot of Euco" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Feuco.com.au%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Euco</h3><p>euco.com.au</p></div><a aria-label="Visit Euco" href="https://euco.com.au/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Elliqua website" class="site-preview" href="https://www.elliqua.com.au/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Elliqua</span><small>elliqua.com.au</small></div>
+<img alt="Homepage screenshot of Elliqua" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.elliqua.com.au%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Elliqua</h3><p>elliqua.com.au</p></div><a aria-label="Visit Elliqua" href="https://www.elliqua.com.au/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Enesa website" class="site-preview" href="https://www.enesa.com.au/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Enesa</span><small>enesa.com.au</small></div>
+<img alt="Homepage screenshot of Enesa" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.enesa.com.au%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Enesa</h3><p>enesa.com.au</p></div><a aria-label="Visit Enesa" href="https://www.enesa.com.au/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Franklyyou website" class="site-preview" href="https://franklyyou.com/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Franklyyou</span><small>franklyyou.com</small></div>
+<img alt="Homepage screenshot of Franklyyou" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Ffranklyyou.com%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Franklyyou</h3><p>franklyyou.com</p></div><a aria-label="Visit Franklyyou" href="https://franklyyou.com/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Futura E Diamonds website" class="site-preview" href="https://futuraediamonds.com/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Futura E Diamonds</span><small>futuraediamonds.com</small></div>
+<img alt="Homepage screenshot of Futura E Diamonds" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Ffuturaediamonds.com%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Futura E Diamonds</h3><p>futuraediamonds.com</p></div><a aria-label="Visit Futura E Diamonds" href="https://futuraediamonds.com/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open House of Walton website" class="site-preview" href="https://houseofwalton.com.au/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>House of Walton</span><small>houseofwalton.com.au</small></div>
+<img alt="Homepage screenshot of House of Walton" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fhouseofwalton.com.au%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>House of Walton</h3><p>houseofwalton.com.au</p></div><a aria-label="Visit House of Walton" href="https://houseofwalton.com.au/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Homeware Base website" class="site-preview" href="https://homewarebase.com/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Homeware Base</span><small>homewarebase.com</small></div>
+<img alt="Homepage screenshot of Homeware Base" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fhomewarebase.com%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Homeware Base</h3><p>homewarebase.com</p></div><a aria-label="Visit Homeware Base" href="https://homewarebase.com/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open In Bloom Maternity website" class="site-preview" href="https://inbloommaternity.com.au/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>In Bloom Maternity</span><small>inbloommaternity.com.au</small></div>
+<img alt="Homepage screenshot of In Bloom Maternity" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Finbloommaternity.com.au%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>In Bloom Maternity</h3><p>inbloommaternity.com.au</p></div><a aria-label="Visit In Bloom Maternity" href="https://inbloommaternity.com.au/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Mayfield Vineyard website" class="site-preview" href="https://mayfieldvineyard.com.au/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Mayfield Vineyard</span><small>mayfieldvineyard.com.au</small></div>
+<img alt="Homepage screenshot of Mayfield Vineyard" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fmayfieldvineyard.com.au%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Mayfield Vineyard</h3><p>mayfieldvineyard.com.au</p></div><a aria-label="Visit Mayfield Vineyard" href="https://mayfieldvineyard.com.au/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Neutriderm Australia website" class="site-preview" href="https://au.neutriderm.com/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Neutriderm Australia</span><small>au.neutriderm.com</small></div>
+<img alt="Homepage screenshot of Neutriderm Australia" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fau.neutriderm.com%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Neutriderm Australia</h3><p>au.neutriderm.com</p></div><a aria-label="Visit Neutriderm Australia" href="https://au.neutriderm.com/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Noosa Skin Co website" class="site-preview" href="https://www.noosaskinco.com.au/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Noosa Skin Co</span><small>noosaskinco.com.au</small></div>
+<img alt="Homepage screenshot of Noosa Skin Co" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.noosaskinco.com.au%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Noosa Skin Co</h3><p>noosaskinco.com.au</p></div><a aria-label="Visit Noosa Skin Co" href="https://www.noosaskinco.com.au/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Oohganics website" class="site-preview" href="https://www.oohganics.com.au/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Oohganics</span><small>oohganics.com.au</small></div>
+<img alt="Homepage screenshot of Oohganics" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.oohganics.com.au%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Oohganics</h3><p>oohganics.com.au</p></div><a aria-label="Visit Oohganics" href="https://www.oohganics.com.au/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Once A Day Co website" class="site-preview" href="https://onceadayco.com/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Once A Day Co</span><small>onceadayco.com</small></div>
+<img alt="Homepage screenshot of Once A Day Co" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fonceadayco.com%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Once A Day Co</h3><p>onceadayco.com</p></div><a aria-label="Visit Once A Day Co" href="https://onceadayco.com/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Ova Ni Sound website" class="site-preview" href="https://ovanisound.com/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Ova Ni Sound</span><small>ovanisound.com</small></div>
+<img alt="Homepage screenshot of Ova Ni Sound" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fovanisound.com%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Ova Ni Sound</h3><p>ovanisound.com</p></div><a aria-label="Visit Ova Ni Sound" href="https://ovanisound.com/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Pilates Mini website" class="site-preview" href="https://www.pilatesmini.com/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Pilates Mini</span><small>pilatesmini.com</small></div>
+<img alt="Homepage screenshot of Pilates Mini" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.pilatesmini.com%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Pilates Mini</h3><p>pilatesmini.com</p></div><a aria-label="Visit Pilates Mini" href="https://www.pilatesmini.com/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open PWRD Pro website" class="site-preview" href="https://pwrdpro.com/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>PWRD Pro</span><small>pwrdpro.com</small></div>
+<img alt="Homepage screenshot of PWRD Pro" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fpwrdpro.com%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>PWRD Pro</h3><p>pwrdpro.com</p></div><a aria-label="Visit PWRD Pro" href="https://pwrdpro.com/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Raw Edge Boutique website" class="site-preview" href="https://rawedgeboutique.com.au/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Raw Edge Boutique</span><small>rawedgeboutique.com.au</small></div>
+<img alt="Homepage screenshot of Raw Edge Boutique" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Frawedgeboutique.com.au%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Raw Edge Boutique</h3><p>rawedgeboutique.com.au</p></div><a aria-label="Visit Raw Edge Boutique" href="https://rawedgeboutique.com.au/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Rejuvazone website" class="site-preview" href="https://rejuvazone.com/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Rejuvazone</span><small>rejuvazone.com</small></div>
+<img alt="Homepage screenshot of Rejuvazone" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Frejuvazone.com%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Rejuvazone</h3><p>rejuvazone.com</p></div><a aria-label="Visit Rejuvazone" href="https://rejuvazone.com/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Roadee website" class="site-preview" href="https://roadee.com.au/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Roadee</span><small>roadee.com.au</small></div>
+<img alt="Homepage screenshot of Roadee" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Froadee.com.au%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Roadee</h3><p>roadee.com.au</p></div><a aria-label="Visit Roadee" href="https://roadee.com.au/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Select Sweets website" class="site-preview" href="https://selectsweets.com.au/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Select Sweets</span><small>selectsweets.com.au</small></div>
+<img alt="Homepage screenshot of Select Sweets" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fselectsweets.com.au%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Select Sweets</h3><p>selectsweets.com.au</p></div><a aria-label="Visit Select Sweets" href="https://selectsweets.com.au/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Schleepi website" class="site-preview" href="https://schleepi.com/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Schleepi</span><small>schleepi.com</small></div>
+<img alt="Homepage screenshot of Schleepi" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fschleepi.com%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Schleepi</h3><p>schleepi.com</p></div><a aria-label="Visit Schleepi" href="https://schleepi.com/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open The Seedy Sister website" class="site-preview" href="https://theseedysister.com.au/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>The Seedy Sister</span><small>theseedysister.com.au</small></div>
+<img alt="Homepage screenshot of The Seedy Sister" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Ftheseedysister.com.au%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>The Seedy Sister</h3><p>theseedysister.com.au</p></div><a aria-label="Visit The Seedy Sister" href="https://theseedysister.com.au/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open The Giveaway Collective website" class="site-preview" href="https://thegiveawaycollective.com.au/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>The Giveaway Collective</span><small>thegiveawaycollective.com.au</small></div>
+<img alt="Homepage screenshot of The Giveaway Collective" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fthegiveawaycollective.com.au%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>The Giveaway Collective</h3><p>thegiveawaycollective.com.au</p></div><a aria-label="Visit The Giveaway Collective" href="https://thegiveawaycollective.com.au/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Xenova website" class="site-preview" href="https://xenova.global/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Xenova</span><small>xenova.global</small></div>
+<img alt="Homepage screenshot of Xenova" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fxenova.global%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Xenova</h3><p>xenova.global</p></div><a aria-label="Visit Xenova" href="https://xenova.global/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Yenta Posha website" class="site-preview" href="https://yentaposha.com/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Yenta Posha</span><small>yentaposha.com</small></div>
+<img alt="Homepage screenshot of Yenta Posha" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fyentaposha.com%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Yenta Posha</h3><p>yentaposha.com</p></div><a aria-label="Visit Yenta Posha" href="https://yentaposha.com/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article></div>
+<div class="sites-footer"><span>34 websites</span><button class="sites-all-btn" id="showAllSites" type="button">See All Websites <span aria-hidden="true">↗</span></button></div>
+<div class="previous-work-title"><span class="site-kicker">OTHER FEATURED WORK</span><h3>Additional projects</h3></div>
+<div class="work-grid legacy-work-grid">
 <article class="work-item">
 <div class="work-visual a"></div>
 <span class="work-tag">Shopify</span>
@@ -532,6 +813,252 @@
 </div>
 </div>
 </section>
+<div aria-hidden="true" aria-label="All portfolio websites" aria-modal="true" class="sites-modal" id="sitesModal" role="dialog">
+<div class="sites-modal-panel">
+<div class="sites-modal-header"><div><span class="site-kicker">FULL PORTFOLIO</span><h2>All Websites <span class="sites-count">34</span></h2><p>Explore all website homepage previews. Click any website to open it.</p></div>
+<button aria-label="Close all websites" class="site-close" id="closeSitesModal" type="button">✕</button></div>
+<div class="sites-modal-grid" id="sitesModalGrid"><article class="site-card">
+<a aria-label="Open Affina Haus website" class="site-preview" href="https://affinahaus.com/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Affina Haus</span><small>affinahaus.com</small></div>
+<img alt="Homepage screenshot of Affina Haus" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Faffinahaus.com%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Affina Haus</h3><p>affinahaus.com</p></div><a aria-label="Visit Affina Haus" href="https://affinahaus.com/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Allergoff website" class="site-preview" href="https://allergoff.com.au/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Allergoff</span><small>allergoff.com.au</small></div>
+<img alt="Homepage screenshot of Allergoff" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fallergoff.com.au%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Allergoff</h3><p>allergoff.com.au</p></div><a aria-label="Visit Allergoff" href="https://allergoff.com.au/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Alpine Chain Co website" class="site-preview" href="https://alpinechainco.com.au/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Alpine Chain Co</span><small>alpinechainco.com.au</small></div>
+<img alt="Homepage screenshot of Alpine Chain Co" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Falpinechainco.com.au%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Alpine Chain Co</h3><p>alpinechainco.com.au</p></div><a aria-label="Visit Alpine Chain Co" href="https://alpinechainco.com.au/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Aus Fairings website" class="site-preview" href="https://aus-fairings.com/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Aus Fairings</span><small>aus-fairings.com</small></div>
+<img alt="Homepage screenshot of Aus Fairings" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Faus-fairings.com%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Aus Fairings</h3><p>aus-fairings.com</p></div><a aria-label="Visit Aus Fairings" href="https://aus-fairings.com/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Bad Cat Label website" class="site-preview" href="https://badcatlabel.com/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Bad Cat Label</span><small>badcatlabel.com</small></div>
+<img alt="Homepage screenshot of Bad Cat Label" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fbadcatlabel.com%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Bad Cat Label</h3><p>badcatlabel.com</p></div><a aria-label="Visit Bad Cat Label" href="https://badcatlabel.com/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Best Fur Forward website" class="site-preview" href="https://bestfurforward.com.au/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Best Fur Forward</span><small>bestfurforward.com.au</small></div>
+<img alt="Homepage screenshot of Best Fur Forward" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fbestfurforward.com.au%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Best Fur Forward</h3><p>bestfurforward.com.au</p></div><a aria-label="Visit Best Fur Forward" href="https://bestfurforward.com.au/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Belle Monde Beauty website" class="site-preview" href="https://bellemondebeauty.com/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Belle Monde Beauty</span><small>bellemondebeauty.com</small></div>
+<img alt="Homepage screenshot of Belle Monde Beauty" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fbellemondebeauty.com%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Belle Monde Beauty</h3><p>bellemondebeauty.com</p></div><a aria-label="Visit Belle Monde Beauty" href="https://bellemondebeauty.com/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Calm Babies website" class="site-preview" href="https://calmbabies.com.au/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Calm Babies</span><small>calmbabies.com.au</small></div>
+<img alt="Homepage screenshot of Calm Babies" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fcalmbabies.com.au%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Calm Babies</h3><p>calmbabies.com.au</p></div><a aria-label="Visit Calm Babies" href="https://calmbabies.com.au/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Comosum website" class="site-preview" href="https://comosum.co/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Comosum</span><small>comosum.co</small></div>
+<img alt="Homepage screenshot of Comosum" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fcomosum.co%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Comosum</h3><p>comosum.co</p></div><a aria-label="Visit Comosum" href="https://comosum.co/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Euco website" class="site-preview" href="https://euco.com.au/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Euco</span><small>euco.com.au</small></div>
+<img alt="Homepage screenshot of Euco" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Feuco.com.au%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Euco</h3><p>euco.com.au</p></div><a aria-label="Visit Euco" href="https://euco.com.au/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Elliqua website" class="site-preview" href="https://www.elliqua.com.au/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Elliqua</span><small>elliqua.com.au</small></div>
+<img alt="Homepage screenshot of Elliqua" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.elliqua.com.au%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Elliqua</h3><p>elliqua.com.au</p></div><a aria-label="Visit Elliqua" href="https://www.elliqua.com.au/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Enesa website" class="site-preview" href="https://www.enesa.com.au/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Enesa</span><small>enesa.com.au</small></div>
+<img alt="Homepage screenshot of Enesa" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.enesa.com.au%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Enesa</h3><p>enesa.com.au</p></div><a aria-label="Visit Enesa" href="https://www.enesa.com.au/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Franklyyou website" class="site-preview" href="https://franklyyou.com/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Franklyyou</span><small>franklyyou.com</small></div>
+<img alt="Homepage screenshot of Franklyyou" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Ffranklyyou.com%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Franklyyou</h3><p>franklyyou.com</p></div><a aria-label="Visit Franklyyou" href="https://franklyyou.com/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Futura E Diamonds website" class="site-preview" href="https://futuraediamonds.com/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Futura E Diamonds</span><small>futuraediamonds.com</small></div>
+<img alt="Homepage screenshot of Futura E Diamonds" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Ffuturaediamonds.com%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Futura E Diamonds</h3><p>futuraediamonds.com</p></div><a aria-label="Visit Futura E Diamonds" href="https://futuraediamonds.com/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open House of Walton website" class="site-preview" href="https://houseofwalton.com.au/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>House of Walton</span><small>houseofwalton.com.au</small></div>
+<img alt="Homepage screenshot of House of Walton" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fhouseofwalton.com.au%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>House of Walton</h3><p>houseofwalton.com.au</p></div><a aria-label="Visit House of Walton" href="https://houseofwalton.com.au/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Homeware Base website" class="site-preview" href="https://homewarebase.com/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Homeware Base</span><small>homewarebase.com</small></div>
+<img alt="Homepage screenshot of Homeware Base" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fhomewarebase.com%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Homeware Base</h3><p>homewarebase.com</p></div><a aria-label="Visit Homeware Base" href="https://homewarebase.com/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open In Bloom Maternity website" class="site-preview" href="https://inbloommaternity.com.au/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>In Bloom Maternity</span><small>inbloommaternity.com.au</small></div>
+<img alt="Homepage screenshot of In Bloom Maternity" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Finbloommaternity.com.au%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>In Bloom Maternity</h3><p>inbloommaternity.com.au</p></div><a aria-label="Visit In Bloom Maternity" href="https://inbloommaternity.com.au/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Mayfield Vineyard website" class="site-preview" href="https://mayfieldvineyard.com.au/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Mayfield Vineyard</span><small>mayfieldvineyard.com.au</small></div>
+<img alt="Homepage screenshot of Mayfield Vineyard" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fmayfieldvineyard.com.au%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Mayfield Vineyard</h3><p>mayfieldvineyard.com.au</p></div><a aria-label="Visit Mayfield Vineyard" href="https://mayfieldvineyard.com.au/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Neutriderm Australia website" class="site-preview" href="https://au.neutriderm.com/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Neutriderm Australia</span><small>au.neutriderm.com</small></div>
+<img alt="Homepage screenshot of Neutriderm Australia" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fau.neutriderm.com%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Neutriderm Australia</h3><p>au.neutriderm.com</p></div><a aria-label="Visit Neutriderm Australia" href="https://au.neutriderm.com/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Noosa Skin Co website" class="site-preview" href="https://www.noosaskinco.com.au/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Noosa Skin Co</span><small>noosaskinco.com.au</small></div>
+<img alt="Homepage screenshot of Noosa Skin Co" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.noosaskinco.com.au%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Noosa Skin Co</h3><p>noosaskinco.com.au</p></div><a aria-label="Visit Noosa Skin Co" href="https://www.noosaskinco.com.au/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Oohganics website" class="site-preview" href="https://www.oohganics.com.au/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Oohganics</span><small>oohganics.com.au</small></div>
+<img alt="Homepage screenshot of Oohganics" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.oohganics.com.au%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Oohganics</h3><p>oohganics.com.au</p></div><a aria-label="Visit Oohganics" href="https://www.oohganics.com.au/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Once A Day Co website" class="site-preview" href="https://onceadayco.com/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Once A Day Co</span><small>onceadayco.com</small></div>
+<img alt="Homepage screenshot of Once A Day Co" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fonceadayco.com%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Once A Day Co</h3><p>onceadayco.com</p></div><a aria-label="Visit Once A Day Co" href="https://onceadayco.com/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Ova Ni Sound website" class="site-preview" href="https://ovanisound.com/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Ova Ni Sound</span><small>ovanisound.com</small></div>
+<img alt="Homepage screenshot of Ova Ni Sound" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fovanisound.com%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Ova Ni Sound</h3><p>ovanisound.com</p></div><a aria-label="Visit Ova Ni Sound" href="https://ovanisound.com/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Pilates Mini website" class="site-preview" href="https://www.pilatesmini.com/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Pilates Mini</span><small>pilatesmini.com</small></div>
+<img alt="Homepage screenshot of Pilates Mini" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.pilatesmini.com%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Pilates Mini</h3><p>pilatesmini.com</p></div><a aria-label="Visit Pilates Mini" href="https://www.pilatesmini.com/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open PWRD Pro website" class="site-preview" href="https://pwrdpro.com/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>PWRD Pro</span><small>pwrdpro.com</small></div>
+<img alt="Homepage screenshot of PWRD Pro" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fpwrdpro.com%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>PWRD Pro</h3><p>pwrdpro.com</p></div><a aria-label="Visit PWRD Pro" href="https://pwrdpro.com/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Raw Edge Boutique website" class="site-preview" href="https://rawedgeboutique.com.au/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Raw Edge Boutique</span><small>rawedgeboutique.com.au</small></div>
+<img alt="Homepage screenshot of Raw Edge Boutique" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Frawedgeboutique.com.au%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Raw Edge Boutique</h3><p>rawedgeboutique.com.au</p></div><a aria-label="Visit Raw Edge Boutique" href="https://rawedgeboutique.com.au/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Rejuvazone website" class="site-preview" href="https://rejuvazone.com/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Rejuvazone</span><small>rejuvazone.com</small></div>
+<img alt="Homepage screenshot of Rejuvazone" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Frejuvazone.com%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Rejuvazone</h3><p>rejuvazone.com</p></div><a aria-label="Visit Rejuvazone" href="https://rejuvazone.com/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Roadee website" class="site-preview" href="https://roadee.com.au/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Roadee</span><small>roadee.com.au</small></div>
+<img alt="Homepage screenshot of Roadee" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Froadee.com.au%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Roadee</h3><p>roadee.com.au</p></div><a aria-label="Visit Roadee" href="https://roadee.com.au/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Select Sweets website" class="site-preview" href="https://selectsweets.com.au/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Select Sweets</span><small>selectsweets.com.au</small></div>
+<img alt="Homepage screenshot of Select Sweets" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fselectsweets.com.au%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Select Sweets</h3><p>selectsweets.com.au</p></div><a aria-label="Visit Select Sweets" href="https://selectsweets.com.au/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Schleepi website" class="site-preview" href="https://schleepi.com/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Schleepi</span><small>schleepi.com</small></div>
+<img alt="Homepage screenshot of Schleepi" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fschleepi.com%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Schleepi</h3><p>schleepi.com</p></div><a aria-label="Visit Schleepi" href="https://schleepi.com/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open The Seedy Sister website" class="site-preview" href="https://theseedysister.com.au/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>The Seedy Sister</span><small>theseedysister.com.au</small></div>
+<img alt="Homepage screenshot of The Seedy Sister" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Ftheseedysister.com.au%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>The Seedy Sister</h3><p>theseedysister.com.au</p></div><a aria-label="Visit The Seedy Sister" href="https://theseedysister.com.au/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open The Giveaway Collective website" class="site-preview" href="https://thegiveawaycollective.com.au/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>The Giveaway Collective</span><small>thegiveawaycollective.com.au</small></div>
+<img alt="Homepage screenshot of The Giveaway Collective" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fthegiveawaycollective.com.au%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>The Giveaway Collective</h3><p>thegiveawaycollective.com.au</p></div><a aria-label="Visit The Giveaway Collective" href="https://thegiveawaycollective.com.au/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Xenova website" class="site-preview" href="https://xenova.global/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Xenova</span><small>xenova.global</small></div>
+<img alt="Homepage screenshot of Xenova" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fxenova.global%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Xenova</h3><p>xenova.global</p></div><a aria-label="Visit Xenova" href="https://xenova.global/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article><article class="site-card">
+<a aria-label="Open Yenta Posha website" class="site-preview" href="https://yentaposha.com/" rel="noopener noreferrer" target="_blank">
+<div class="site-fallback"><span>Yenta Posha</span><small>yentaposha.com</small></div>
+<img alt="Homepage screenshot of Yenta Posha" decoding="async" loading="lazy" onerror="this.style.display='none'" src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fyentaposha.com%2F?w=900"/>
+<span aria-hidden="true" class="site-open-icon">↗</span>
+</a>
+<div class="site-meta"><div><h3>Yenta Posha</h3><p>yentaposha.com</p></div><a aria-label="Visit Yenta Posha" href="https://yentaposha.com/" rel="noopener noreferrer" target="_blank">↗</a></div>
+</article></div>
+</div>
+</div>
+
 <section class="section section-alt">
 <div class="wrap">
 <span class="eyebrow">Why work with me</span>
@@ -714,5 +1241,18 @@
     });
   });
 </script>
-</body>
+<script>
+(function(){
+const carousel=document.getElementById('sitesCarousel'),modal=document.getElementById('sitesModal'),open=document.getElementById('showAllSites'),close=document.getElementById('closeSitesModal');
+if(!carousel||!modal)return;
+document.getElementById('sitesPrev').addEventListener('click',()=>carousel.scrollBy({left:-carousel.clientWidth*.8,behavior:'smooth'}));
+document.getElementById('sitesNext').addEventListener('click',()=>carousel.scrollBy({left:carousel.clientWidth*.8,behavior:'smooth'}));
+let lastFocus;
+function show(){lastFocus=document.activeElement;modal.classList.add('is-open');modal.setAttribute('aria-hidden','false');document.body.classList.add('sites-modal-open');close.focus();}
+function hide(){modal.classList.remove('is-open');modal.setAttribute('aria-hidden','true');document.body.classList.remove('sites-modal-open');lastFocus?.focus();}
+open.addEventListener('click',show);close.addEventListener('click',hide);
+modal.addEventListener('click',e=>{if(e.target===modal)hide()});
+document.addEventListener('keydown',e=>{if(modal.classList.contains('is-open')){if(e.key==='Escape')hide();if(e.key==='Tab'){const els=[...modal.querySelectorAll('button,a[href]')];const first=els[0],last=els[els.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}}});
+})();
+</script></body>
 </html>
